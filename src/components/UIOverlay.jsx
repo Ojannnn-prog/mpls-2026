@@ -65,16 +65,17 @@ const Countdown = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0, hours: 0, minutes: 0, seconds: 0
   })
+  const [isExpired, setIsExpired] = useState(false)
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const checkTime = () => {
       const now = new Date().getTime()
       const target = new Date(targetDate).getTime()
       const distance = target - now
 
-      if (distance < 0) {
-        clearInterval(interval)
-        return
+      if (distance <= 0) {
+        setIsExpired(true)
+        return true // expired
       }
 
       setTimeLeft({
@@ -83,10 +84,22 @@ const Countdown = ({ targetDate }) => {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000)
       })
+      return false // not expired
+    }
+
+    // Initial check
+    if (checkTime()) return;
+
+    const interval = setInterval(() => {
+      if (checkTime()) {
+        clearInterval(interval)
+      }
     }, 1000)
 
     return () => clearInterval(interval)
   }, [targetDate])
+
+  if (isExpired) return null;
 
   return (
     <div className="flex justify-between items-center bg-white/5 rounded-xl p-3 mb-4 border border-white/10 shadow-inner">
