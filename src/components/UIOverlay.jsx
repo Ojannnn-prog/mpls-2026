@@ -61,6 +61,58 @@ const ImageSlider = ({ images, altText }) => {
   );
 }
 
+const Countdown = ({ targetDate }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0, hours: 0, minutes: 0, seconds: 0
+  })
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date().getTime()
+      const target = new Date(targetDate).getTime()
+      const distance = target - now
+
+      if (distance < 0) {
+        clearInterval(interval)
+        return
+      }
+
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      })
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [targetDate])
+
+  return (
+    <div className="flex justify-between items-center bg-white/5 rounded-xl p-3 mb-4 border border-white/10 shadow-inner">
+      <div className="flex flex-col items-center w-12">
+        <span className="text-xl sm:text-2xl font-bold bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">{timeLeft.days}</span>
+        <span className="text-[9px] sm:text-[10px] uppercase tracking-wider opacity-70 mt-1">Hari</span>
+      </div>
+      <span className="text-xl font-bold opacity-30">:</span>
+      <div className="flex flex-col items-center w-12">
+        <span className="text-xl sm:text-2xl font-bold bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">{String(timeLeft.hours).padStart(2, '0')}</span>
+        <span className="text-[9px] sm:text-[10px] uppercase tracking-wider opacity-70 mt-1">Jam</span>
+      </div>
+      <span className="text-xl font-bold opacity-30">:</span>
+      <div className="flex flex-col items-center w-12">
+        <span className="text-xl sm:text-2xl font-bold bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">{String(timeLeft.minutes).padStart(2, '0')}</span>
+        <span className="text-[9px] sm:text-[10px] uppercase tracking-wider opacity-70 mt-1">Menit</span>
+      </div>
+      <span className="text-xl font-bold opacity-30">:</span>
+      <div className="flex flex-col items-center w-12">
+        <span className="text-xl sm:text-2xl font-bold bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">{String(timeLeft.seconds).padStart(2, '0')}</span>
+        <span className="text-[9px] sm:text-[10px] uppercase tracking-wider opacity-70 mt-1">Detik</span>
+      </div>
+    </div>
+  )
+}
+
 export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onReturn, isReturning }) {
   const images2024 = [
     { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.28.jpeg", caption: "Semangat siswa baru di hari pertama MPLS." },
@@ -120,13 +172,16 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
                 Next Destination
               </button>
             ) : (
-              <button 
-                onClick={onReturn}
-                className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
-              >
-                <RotateCcw size={18} />
-                Kembali ke Awal
-              </button>
+              <>
+                <Countdown targetDate="2026-07-13T07:00:00+07:00" />
+                <button 
+                  onClick={onReturn}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                >
+                  <RotateCcw size={18} />
+                  Kembali ke Awal
+                </button>
+              </>
             )}
           </div>
         </div>
