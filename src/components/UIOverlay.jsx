@@ -18,7 +18,7 @@ const ImageSlider = ({ images, altText }) => {
   const currentCaption = typeof images[currentIndex] === 'object' ? images[currentIndex].caption : '';
 
   return (
-    <div className="w-full h-48 sm:h-56 rounded-2xl mb-5 overflow-hidden flex items-center justify-center border border-white/10 relative group bg-black/50">
+    <div className="w-full h-40 sm:h-56 rounded-2xl mb-4 sm:mb-5 overflow-hidden flex items-center justify-center border border-white/10 relative group bg-black/50">
       <img 
         src={currentImage} 
         alt={`${altText} - ${currentIndex + 1}`} 
@@ -92,8 +92,8 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
 
       {/* Info Panels */}
       {isPlaying && currentStop > 0 && !isReturning && (
-        <div className="absolute left-4 right-4 bottom-4 md:left-auto md:right-12 md:bottom-12 md:w-[384px] animate-fade-in pointer-events-auto transition-opacity duration-1000 opacity-100 max-h-[90vh] overflow-y-auto no-scrollbar rounded-3xl">
-          <div className="bg-black/40 backdrop-blur-2xl border border-white/20 rounded-3xl p-5 sm:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative overflow-hidden">
+        <div className="absolute left-4 right-4 bottom-6 md:left-auto md:right-12 md:bottom-12 md:w-[384px] animate-fade-in pointer-events-auto transition-opacity duration-1000 opacity-100 max-h-[85vh] overflow-y-auto no-scrollbar rounded-3xl flex flex-col">
+          <div className="bg-black/40 backdrop-blur-2xl border border-white/20 rounded-3xl p-4 sm:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative overflow-hidden flex-shrink-0">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
             
             {currentStop === 1 && <ImageSlider images={images2024} altText="MPLS 2024" />}
@@ -106,7 +106,7 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
               {currentStop === 3 && "Coming soon : MPLS 2026 SDN 231 Sukaasih"}
             </h2>
             
-            <p className="text-gray-300/90 leading-relaxed text-xs sm:text-sm font-light mb-5 sm:mb-6">
+            <p className="text-gray-300/90 leading-relaxed text-xs sm:text-sm font-light mb-4 sm:mb-6">
               {currentStop === 1 && "Mars is the fourth planet from the Sun, located in the Milky Way galaxy."}
               {currentStop === 2 && "Jupiter is a gas giant and the largest planet in our solar system."}
               {currentStop === 3 && "The final frontier for this year's exploration."}
@@ -115,14 +115,14 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
             {currentStop < 3 ? (
               <button 
                 onClick={onNext}
-                className="w-full py-3 sm:py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-semibold border border-white/10 hover:border-white/30"
+                className="w-full py-2.5 sm:py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-semibold border border-white/10 hover:border-white/30"
               >
                 Next Destination
               </button>
             ) : (
               <button 
                 onClick={onReturn}
-                className="w-full flex items-center justify-center gap-2 py-3 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
               >
                 <RotateCcw size={18} />
                 Kembali ke Awal
