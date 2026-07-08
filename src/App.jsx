@@ -40,7 +40,7 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen relative bg-black overflow-hidden font-sans">
+    <div className="w-full h-[100dvh] relative bg-black overflow-hidden font-sans">
       <Canvas camera={{ position: [0, 2, 10], fov: 60 }}>
         <Scene 
           isPlaying={isPlaying} 
