@@ -143,7 +143,15 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
   const images2025 = [
     { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21%20(1).jpeg", caption: "Eksplorasi bakat dan minat siswa." },
     { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21%20(2).jpeg", caption: "Kekompakan bersama teman-teman baru." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21.jpeg", caption: "Membangun karakter penerus bangsa." }
+    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21.jpeg", caption: "Membangun karakter penerus bangsa." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.53.jpeg", caption: "Pengenalan ekstrakurikuler sekolah." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54.jpeg", caption: "Bermain game edukatif di dalam kelas." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54%20(1).jpeg", caption: "Belajar kerjasama tim dalam permainan." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54%20(2).jpeg", caption: "Keseruan berinteraksi dengan guru." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57.jpeg", caption: "Menyanyi dan menari bersama-sama." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57%20(1).jpeg", caption: "Semangat berlatih baris berbaris." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57%20(2).jpeg", caption: "Berdiskusi santai di halaman sekolah." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.58.jpeg", caption: "Momen manis kebersamaan angkatan 2025." }
   ]
 
   const images2026 = [
