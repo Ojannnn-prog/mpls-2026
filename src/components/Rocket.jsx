@@ -12,15 +12,24 @@ const Rocket = forwardRef(({ isPlaying, onStopChange, stops }, ref) => {
   const isReversingRef = useRef(false)
 
   const curve = useMemo(() => {
-    return new THREE.CatmullRomCurve3([
-      new THREE.Vector3(0, 0, 15),     
-      new THREE.Vector3(5, 2, 5),      
-      new THREE.Vector3(stops[0].position[0], stops[0].position[1], stops[0].position[2] + 4), 
-      new THREE.Vector3(-10, -3, -15), 
-      new THREE.Vector3(stops[1].position[0], stops[1].position[1], stops[1].position[2] + 8), 
-      new THREE.Vector3(5, 5, -45),    
-      new THREE.Vector3(stops[2].position[0], stops[2].position[1], stops[2].position[2] + 5)  
-    ], false, 'catmullrom', 0.5)
+    const points = [
+      new THREE.Vector3(0, 0, 15), // start
+      new THREE.Vector3(5, 2, 5), // intermediate
+      new THREE.Vector3(stops[0].position[0], stops[0].position[1], stops[0].position[2] + 5), // Stop 1 Bumi
+      new THREE.Vector3(0, 0, -5), // intermediate
+      new THREE.Vector3(stops[1].position[0], stops[1].position[1], stops[1].position[2] + 5), // Stop 2 Mars
+      new THREE.Vector3(5, 2, -25), // intermediate
+      new THREE.Vector3(stops[2].position[0], stops[2].position[1], stops[2].position[2] + 8), // Stop 3 Jupiter
+      new THREE.Vector3(0, -2, -45), // intermediate
+      new THREE.Vector3(stops[3].position[0], stops[3].position[1], stops[3].position[2] + 8), // Stop 4 Saturnus
+      new THREE.Vector3(-5, 4, -65), // intermediate
+      new THREE.Vector3(stops[4].position[0], stops[4].position[1], stops[4].position[2] + 6), // Stop 5 Uranus
+      new THREE.Vector3(5, -2, -85), // intermediate
+      new THREE.Vector3(stops[5].position[0], stops[5].position[1], stops[5].position[2] + 6), // Stop 6 Neptunus
+      new THREE.Vector3(0, 5, -105), // intermediate
+      new THREE.Vector3(stops[6].position[0], stops[6].position[1], stops[6].position[2] + 5)  // Stop 7 Space Station
+    ]
+    return new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.5)
   }, [stops])
 
   useImperativeHandle(ref, () => ({
@@ -41,7 +50,7 @@ const Rocket = forwardRef(({ isPlaying, onStopChange, stops }, ref) => {
       // Fast reverse animation
       gsap.to(progressRef.current, {
         value: 0,
-        duration: 3, // Whoosh speed
+        duration: 4, // Whoosh speed
         ease: "power2.in", 
         onComplete: () => {
           isReversingRef.current = false
@@ -62,31 +71,31 @@ const Rocket = forwardRef(({ isPlaying, onStopChange, stops }, ref) => {
       const tl = gsap.timeline()
       timelineRef.current = tl
 
-      const p1 = 2 / 6
-      const p2 = 4 / 6
-      const p3 = 6 / 6
-
-      // Smoother animation using sine.inOut
-      tl.to(progressRef.current, {
-        value: p1,
-        duration: 6,
-        ease: "sine.inOut",
-        onComplete: () => onStopChange(1)
-      })
-      .addPause()
-      .to(progressRef.current, {
-        value: p2,
-        duration: 6,
-        ease: "sine.inOut",
-        onComplete: () => onStopChange(2)
-      })
-      .addPause()
-      .to(progressRef.current, {
-        value: p3,
-        duration: 6,
-        ease: "sine.inOut",
-        onComplete: () => onStopChange(3)
-      })
+      // Calculate the progress fractions for the 7 stops
+      // The curve has 15 points total (indices 0 to 14)
+      // Stop 1 is at index 2 (2/14)
+      // Stop 2 is at index 4 (4/14)
+      // Stop 3 is at index 6 (6/14)
+      // Stop 4 is at index 8 (8/14)
+      // Stop 5 is at index 10 (10/14)
+      // Stop 6 is at index 12 (12/14)
+      // Stop 7 is at index 14 (14/14 = 1.0)
+      
+      const numPoints = 14
+      
+      for (let i = 1; i <= 7; i++) {
+         const p = (i * 2) / numPoints
+         tl.to(progressRef.current, {
+           value: p,
+           duration: 5,
+           ease: "sine.inOut",
+           onComplete: () => onStopChange(i)
+         })
+         
+         if (i < 7) {
+           tl.addPause()
+         }
+      }
     }
   }, [isPlaying, onStopChange])
 

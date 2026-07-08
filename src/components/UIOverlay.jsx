@@ -19,12 +19,12 @@ const ImageSlider = ({ images, altText }) => {
 
   return (
     <div className="w-full h-40 sm:h-56 rounded-2xl mb-4 sm:mb-5 overflow-hidden flex items-center justify-center border border-white/10 relative group bg-black/50">
-      <img 
-        src={currentImage} 
-        alt={`${altText} - ${currentIndex + 1}`} 
-        className="w-full h-full object-cover transition-opacity duration-500" 
+      <img
+        src={currentImage}
+        alt={`${altText} - ${currentIndex + 1}`}
+        className="w-full h-full object-cover transition-opacity duration-500"
       />
-      
+
       {currentCaption && (
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 pt-6 pointer-events-none">
           <p className="text-white/90 text-xs sm:text-sm font-medium text-center drop-shadow-md">
@@ -32,16 +32,16 @@ const ImageSlider = ({ images, altText }) => {
           </p>
         </div>
       )}
-      
+
       {images.length > 1 && (
         <>
-          <div 
+          <div
             className="absolute left-2 top-1/2 -translate-y-1/2 cursor-pointer bg-black/40 hover:bg-black/80 text-white rounded-full p-1 backdrop-blur-md opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300"
             onClick={prevSlide}
           >
             <ChevronLeft size={20} />
           </div>
-          <div 
+          <div
             className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer bg-black/40 hover:bg-black/80 text-white rounded-full p-1 backdrop-blur-md opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300"
             onClick={nextSlide}
           >
@@ -49,8 +49,8 @@ const ImageSlider = ({ images, altText }) => {
           </div>
           <div className="absolute top-2 right-2 flex gap-1.5 bg-black/30 backdrop-blur-md px-2 py-1 rounded-full">
             {images.map((_, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`h-1.5 rounded-full transition-all duration-300 shadow-sm ${idx === currentIndex ? 'w-3 bg-white' : 'w-1.5 bg-white/50 hover:bg-white/80'}`}
               />
             ))}
@@ -127,47 +127,76 @@ const Countdown = ({ targetDate }) => {
 }
 
 export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onReturn, isReturning }) {
-  const images2024 = [
+  // Bumi (Stop 1)
+  const images2024_1 = [
     { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.28.jpeg", caption: "Semangat siswa baru di hari pertama MPLS." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.29.jpeg", caption: "Kegiatan perkenalan lingkungan sekolah." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.28%20(1).jpeg", caption: "Keseruan bermain sambil belajar." },
+    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.29.jpeg", caption: "Kegiatan perkenalan lingkungan sekolah di lapangan." },
+    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.28%20(1).jpeg", caption: "Keseruan bermain bersama teman-teman baru." }
+  ]
+
+  // Mars (Stop 2)
+  const images2024_2 = [
     { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.49.jpeg", caption: "Semangat pagi memulai kegiatan MPLS!" },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.49%20(1).jpeg", caption: "Keseruan beraktivitas bersama di lapangan." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.50.jpeg", caption: "Mendengarkan arahan dari bapak/ibu guru." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51.jpeg", caption: "Berbaris rapi sebelum kegiatan dimulai." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51%20(1).jpeg", caption: "Ceria bersama teman-teman baru di sekolah." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51%20(2).jpeg", caption: "Kekompakan dalam berbagai permainan edukatif." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.52.jpeg", caption: "Membangun karakter dan kedisiplinan sejak dini." }
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.49%20(1).jpeg", caption: "Keseruan beraktivitas bersama di lapangan terbuka." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.50.jpeg", caption: "Bermain permainan tradisional." }
   ]
 
-  const images2025 = [
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21%20(1).jpeg", caption: "Eksplorasi bakat dan minat siswa." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21%20(2).jpeg", caption: "Kekompakan bersama teman-teman baru." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21.jpeg", caption: "Membangun karakter penerus bangsa." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.53.jpeg", caption: "Pengenalan ekstrakurikuler sekolah." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54.jpeg", caption: "Bermain game edukatif di dalam kelas." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54%20(1).jpeg", caption: "Belajar kerjasama tim dalam permainan." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54%20(2).jpeg", caption: "Keseruan berinteraksi dengan guru." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57.jpeg", caption: "Menyanyi dan menari bersama-sama." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57%20(1).jpeg", caption: "Semangat berlatih baris berbaris." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57%20(2).jpeg", caption: "Berdiskusi santai di halaman sekolah." },
-    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.58.jpeg", caption: "Momen manis kebersamaan angkatan 2025." }
+  // Jupiter (Stop 3)
+  const images2024_3 = [
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51.jpeg", caption: "Sambung kata Pramuka." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51%20(1).jpeg", caption: "Penyematan nametag." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51%20(2).jpeg", caption: "Menyambut para jagoan kecil yang hebat." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.52.jpeg", caption: "Senam sehat ceria bersama Mentari pagi...." }
   ]
 
+  // Saturnus (Stop 4)
+  const images2025_1 = [
+    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21%20(1).jpeg", caption: "Eksplorasi bakat dan minat siswa di lapangan." },
+    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21%20(2).jpeg", caption: "1...2...3... cekrek,cekrek bareng guru dan kawan baru!." },
+    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.11.21.jpeg", caption: "Keliling sekolah liat ruangan kelas dan fasilitasnya." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.53.jpeg", caption: "Shalat duha bersama-sama." }
+  ]
+
+  // Uranus (Stop 5)
+  const images2025_2 = [
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54.jpeg", caption: "Bermain game edukatif dan interaktif di lapangan." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54%20(1).jpeg", caption: "Belajar kerjasama tim dalam permainan lapangan." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.54%20(2).jpeg", caption: "Keseruan berinteraksi dengan guru saat senam ceria." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57.jpeg", caption: "Sambutan Kepala SDN 231 Sukaasih." }
+  ]
+
+  // Neptunus (Stop 6)
+  const images2025_3 = [
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57%20(1).jpeg", caption: "Permainan menangkap balon!." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.57%20(2).jpeg", caption: "Berdiskusi santai tentang materi di ruang kelas." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.50.58.jpeg", caption: "Momen manis kebersamaan dan keceriaan angkatan 2025." }
+  ]
+
+  // Space Station (Stop 7)
   const images2026 = [
-    { src: "/Screenshot%202026-07-07%20190355.png", caption: "Bersiap untuk petualangan berikutnya!" }
+    { src: "/Screenshot%202026-07-07%20190355.png", caption: "Bersiap untuk petualangan seru berikutnya di tahun 2026!" }
   ]
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center">
-      {/* Start Button */}
+      {/* Start Button & Main Title */}
       {!isPlaying && !isReturning && (
-        <button 
-          onClick={onStart}
-          className="pointer-events-auto px-8 py-4 sm:px-10 sm:py-5 bg-indigo-600/30 hover:bg-indigo-600/50 backdrop-blur-xl border border-indigo-400/50 rounded-3xl text-white font-bold text-xl sm:text-2xl tracking-widest uppercase transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] cursor-pointer"
-        >
-          Click n Play
-        </button>
+        <div className="flex flex-col items-center gap-8 pointer-events-auto">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] tracking-tight mb-2 sm:mb-4 px-4">
+              Berjelajah MPLS Ramah
+            </h1>
+            <p className="text-lg sm:text-2xl font-bold text-white/90 tracking-[0.2em] uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              SDN 231 Sukaasih
+            </p>
+          </div>
+          <button
+            onClick={onStart}
+            className="px-8 py-4 sm:px-10 sm:py-5 bg-indigo-600/30 hover:bg-indigo-600/50 backdrop-blur-xl border border-indigo-400/50 rounded-3xl text-white font-bold text-xl sm:text-2xl tracking-widest uppercase transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] cursor-pointer"
+          >
+            Mulai Penjelajahan
+          </button>
+        </div>
       )}
 
       {/* Info Panels */}
@@ -175,28 +204,40 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
         <div className="absolute inset-0 pointer-events-none flex flex-col items-center p-4 pt-20 pb-28 md:p-12 md:items-end md:justify-end z-20">
           <div className="w-full max-w-[384px] max-h-full md:max-h-[85vh] bg-black/50 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative flex flex-col pointer-events-auto overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10"></div>
-            
+
             <div className="overflow-y-auto no-scrollbar p-4 sm:p-6 flex flex-col w-full h-full relative">
-              {currentStop === 1 && <ImageSlider images={images2024} altText="MPLS 2024" />}
-              {currentStop === 2 && <ImageSlider images={images2025} altText="MPLS 2025" />}
-              {currentStop === 3 && <ImageSlider images={images2026} altText="MPLS 2026" />}
-              
+              {currentStop === 1 && <ImageSlider images={images2024_1} altText="MPLS 2024 Part 1" />}
+              {currentStop === 2 && <ImageSlider images={images2024_2} altText="MPLS 2024 Part 2" />}
+              {currentStop === 3 && <ImageSlider images={images2024_3} altText="MPLS 2024 Part 3" />}
+              {currentStop === 4 && <ImageSlider images={images2025_1} altText="MPLS 2025 Part 1" />}
+              {currentStop === 5 && <ImageSlider images={images2025_2} altText="MPLS 2025 Part 2" />}
+              {currentStop === 6 && <ImageSlider images={images2025_3} altText="MPLS 2025 Part 3" />}
+              {currentStop === 7 && <ImageSlider images={images2026} altText="MPLS 2026" />}
+
               <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent">
-                {currentStop === 1 && "MPLS 2024"}
-                {currentStop === 2 && "MPLS 2025"}
-                {currentStop === 3 && "Coming soon : MPLS 2026 SDN 231 Sukaasih"}
+                {currentStop === 1 && "MPLS 2024 (Bagian 1)"}
+                {currentStop === 2 && "MPLS 2024 (Bagian 2)"}
+                {currentStop === 3 && "MPLS 2024 (Bagian 3)"}
+                {currentStop === 4 && "MPLS 2025 (Bagian 1)"}
+                {currentStop === 5 && "MPLS 2025 (Bagian 2)"}
+                {currentStop === 6 && "MPLS 2025 (Bagian 3)"}
+                {currentStop === 7 && "Segera Hadir: MPLS 2026"}
               </h2>
-              
+
               <p className="text-gray-300/90 leading-relaxed text-xs sm:text-sm font-light mb-4 sm:mb-6 flex-grow">
-                {currentStop === 1 && "Mars is the fourth planet from the Sun, located in the Milky Way galaxy."}
-                {currentStop === 2 && "Jupiter is a gas giant and the largest planet in our solar system."}
-                {currentStop === 3 && "The final frontier for this year's exploration."}
+                {currentStop === 1 && "Bumi adalah planet ketiga dari Matahari dan satu-satunya tempat yang diketahui memiliki kehidupan."}
+                {currentStop === 2 && "Mars adalah planet keempat dari Matahari, sering dijuluki sebagai si Planet Merah."}
+                {currentStop === 3 && "Jupiter adalah planet terbesar di tata surya kita, sebuah raksasa gas yang menakjubkan."}
+                {currentStop === 4 && "Saturnus dikenal dengan sistem cincinnya yang megah yang terbuat dari bongkahan es dan batuan."}
+                {currentStop === 5 && "Uranus adalah planet raksasa es unik yang berputar miring pada porosnya."}
+                {currentStop === 6 && "Neptunus adalah planet terjauh dari Matahari, tempat yang gelap, dingin, dan sangat berangin."}
+                {currentStop === 7 && "Stasiun Luar Angkasa SDN 231 Sukaasih: Perhentian terakhir menuju masa depan yang cerah."}
               </p>
-              
+
               {/* Desktop Action Area (Hidden on Mobile) */}
               <div className="mt-auto hidden md:block">
-                {currentStop < 3 ? (
-                  <button 
+                {currentStop < 7 ? (
+                  <button
                     onClick={onNext}
                     className="w-full py-2.5 sm:py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-semibold border border-white/10 hover:border-white/30"
                   >
@@ -205,7 +246,7 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
                 ) : (
                   <>
                     <Countdown targetDate="2026/07/13 07:00:00" />
-                    <button 
+                    <button
                       onClick={onReturn}
                       className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
                     >
@@ -224,8 +265,8 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
       {isPlaying && currentStop > 0 && !isReturning && (
         <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none md:hidden z-30 flex flex-col justify-end pb-8">
           <div className="pointer-events-auto">
-            {currentStop < 3 ? (
-              <button 
+            {currentStop < 7 ? (
+              <button
                 onClick={onNext}
                 className="w-full py-3.5 bg-indigo-600/50 backdrop-blur-xl rounded-xl text-white text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-indigo-400/50 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
               >
@@ -234,7 +275,7 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
             ) : (
               <>
                 <Countdown targetDate="2026/07/13 07:00:00" />
-                <button 
+                <button
                   onClick={onReturn}
                   className="w-full flex items-center justify-center gap-2 py-3.5 bg-red-600/50 backdrop-blur-xl rounded-xl text-white text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
                 >
@@ -246,22 +287,23 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
           </div>
         </div>
       )}
-      
+
       {/* Helper Text */}
       {isPlaying && currentStop > 0 && !isReturning && (
-         <div className="absolute top-8 w-full text-center pointer-events-none animate-pulse opacity-60 text-white font-light tracking-widest text-xs sm:text-sm drop-shadow-md px-4">
-           Geser (swipe) atau klik dan seret untuk memutar
-         </div>
+        <div className="absolute top-8 w-full text-center pointer-events-none animate-pulse opacity-60 text-white font-light tracking-widest text-xs sm:text-sm drop-shadow-md px-4">
+          Geser (swipe) atau klik dan seret untuk memutar planet
+        </div>
       )}
 
       {/* Returning Overlay Message */}
       {isReturning && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-           <h1 className="text-4xl md:text-6xl font-black text-white italic tracking-[0.3em] uppercase drop-shadow-[0_0_20px_rgba(59,130,246,0.8)] animate-pulse">
-             Warp Speed!
-           </h1>
+          <h1 className="text-4xl md:text-6xl font-black text-white italic tracking-[0.3em] uppercase drop-shadow-[0_0_20px_rgba(59,130,246,0.8)] animate-pulse">
+            Warp Speed!
+          </h1>
         </div>
       )}
     </div>
   )
 }
+
