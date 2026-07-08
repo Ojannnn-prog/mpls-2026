@@ -157,45 +157,49 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
 
       {/* Info Panels */}
       {isPlaying && currentStop > 0 && !isReturning && (
-        <div className="absolute left-4 right-4 bottom-6 md:left-auto md:right-12 md:bottom-12 md:w-[384px] animate-fade-in pointer-events-auto transition-opacity duration-1000 opacity-100 max-h-[85vh] overflow-y-auto no-scrollbar rounded-3xl flex flex-col">
-          <div className="bg-black/40 backdrop-blur-2xl border border-white/20 rounded-3xl p-4 sm:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative overflow-hidden flex-shrink-0">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+        <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-end p-4 pb-6 md:p-12 md:items-end md:justify-end z-20">
+          <div className="w-full max-w-[384px] max-h-[85vh] bg-black/50 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative flex flex-col pointer-events-auto overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10"></div>
             
-            {currentStop === 1 && <ImageSlider images={images2024} altText="MPLS 2024" />}
-            {currentStop === 2 && <ImageSlider images={images2025} altText="MPLS 2025" />}
-            {currentStop === 3 && <ImageSlider images={images2026} altText="MPLS 2026" />}
-            
-            <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent">
-              {currentStop === 1 && "MPLS 2024"}
-              {currentStop === 2 && "MPLS 2025"}
-              {currentStop === 3 && "Coming soon : MPLS 2026 SDN 231 Sukaasih"}
-            </h2>
-            
-            <p className="text-gray-300/90 leading-relaxed text-xs sm:text-sm font-light mb-4 sm:mb-6">
-              {currentStop === 1 && "Mars is the fourth planet from the Sun, located in the Milky Way galaxy."}
-              {currentStop === 2 && "Jupiter is a gas giant and the largest planet in our solar system."}
-              {currentStop === 3 && "The final frontier for this year's exploration."}
-            </p>
-            
-            {currentStop < 3 ? (
-              <button 
-                onClick={onNext}
-                className="w-full py-2.5 sm:py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-semibold border border-white/10 hover:border-white/30"
-              >
-                Next Destination
-              </button>
-            ) : (
-              <>
-                <Countdown targetDate="2026-07-13T07:00:00+07:00" />
-                <button 
-                  onClick={onReturn}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
-                >
-                  <RotateCcw size={18} />
-                  Kembali ke Awal
-                </button>
-              </>
-            )}
+            <div className="overflow-y-auto no-scrollbar p-4 sm:p-6 flex flex-col w-full h-full relative">
+              {currentStop === 1 && <ImageSlider images={images2024} altText="MPLS 2024" />}
+              {currentStop === 2 && <ImageSlider images={images2025} altText="MPLS 2025" />}
+              {currentStop === 3 && <ImageSlider images={images2026} altText="MPLS 2026" />}
+              
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300 bg-clip-text text-transparent">
+                {currentStop === 1 && "MPLS 2024"}
+                {currentStop === 2 && "MPLS 2025"}
+                {currentStop === 3 && "Coming soon : MPLS 2026 SDN 231 Sukaasih"}
+              </h2>
+              
+              <p className="text-gray-300/90 leading-relaxed text-xs sm:text-sm font-light mb-4 sm:mb-6 flex-grow">
+                {currentStop === 1 && "Mars is the fourth planet from the Sun, located in the Milky Way galaxy."}
+                {currentStop === 2 && "Jupiter is a gas giant and the largest planet in our solar system."}
+                {currentStop === 3 && "The final frontier for this year's exploration."}
+              </p>
+              
+              <div className="mt-auto">
+                {currentStop < 3 ? (
+                  <button 
+                    onClick={onNext}
+                    className="w-full py-2.5 sm:py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-semibold border border-white/10 hover:border-white/30"
+                  >
+                    Next Destination
+                  </button>
+                ) : (
+                  <>
+                    <Countdown targetDate="2026/07/13 07:00:00" />
+                    <button 
+                      onClick={onReturn}
+                      className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3.5 bg-red-600/30 hover:bg-red-600/50 active:bg-red-600/60 rounded-xl text-white text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 hover:border-red-400/80 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                    >
+                      <RotateCcw size={18} />
+                      Kembali ke Awal
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}
