@@ -128,9 +128,13 @@ const Countdown = ({ targetDate }) => {
 
 export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onReturn, isReturning }) {
   const images2024 = [
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.28.jpeg", caption: "Semangat siswa baru di hari pertama MPLS." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.29.jpeg", caption: "Kegiatan perkenalan lingkungan sekolah." },
-    { src: "/WhatsApp%20Image%202026-07-07%20at%2018.10.28%20(1).jpeg", caption: "Keseruan bermain sambil belajar." }
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.49.jpeg", caption: "Semangat pagi memulai kegiatan MPLS!" },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.49%20(1).jpeg", caption: "Keseruan beraktivitas bersama di lapangan." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.50.jpeg", caption: "Mendengarkan arahan dari bapak/ibu guru." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51.jpeg", caption: "Berbaris rapi sebelum kegiatan dimulai." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51%20(1).jpeg", caption: "Ceria bersama teman-teman baru di sekolah." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.51%20(2).jpeg", caption: "Kekompakan dalam berbagai permainan edukatif." },
+    { src: "/WhatsApp%20Image%202026-07-08%20at%2010.49.52.jpeg", caption: "Membangun karakter dan kedisiplinan sejak dini." }
   ]
 
   const images2025 = [
