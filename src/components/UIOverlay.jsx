@@ -157,8 +157,8 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
 
       {/* Info Panels */}
       {isPlaying && currentStop > 0 && !isReturning && (
-        <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-end p-4 pb-6 md:p-12 md:items-end md:justify-end z-20">
-          <div className="w-full max-w-[384px] max-h-[85vh] bg-black/50 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative flex flex-col pointer-events-auto overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none flex flex-col items-center p-4 pt-20 pb-28 md:p-12 md:items-end md:justify-end z-20">
+          <div className="w-full max-w-[384px] max-h-full md:max-h-[85vh] bg-black/50 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] text-white relative flex flex-col pointer-events-auto overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-10"></div>
             
             <div className="overflow-y-auto no-scrollbar p-4 sm:p-6 flex flex-col w-full h-full relative">
@@ -178,7 +178,8 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
                 {currentStop === 3 && "The final frontier for this year's exploration."}
               </p>
               
-              <div className="mt-auto">
+              {/* Desktop Action Area (Hidden on Mobile) */}
+              <div className="mt-auto hidden md:block">
                 {currentStop < 3 ? (
                   <button 
                     onClick={onNext}
@@ -200,6 +201,33 @@ export default function UIOverlay({ isPlaying, currentStop, onStart, onNext, onR
                 )}
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Floating Action Bar (Hidden on Desktop) */}
+      {isPlaying && currentStop > 0 && !isReturning && (
+        <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black via-black/90 to-transparent pointer-events-none md:hidden z-30 flex flex-col justify-end pb-8">
+          <div className="pointer-events-auto">
+            {currentStop < 3 ? (
+              <button 
+                onClick={onNext}
+                className="w-full py-3.5 bg-indigo-600/50 backdrop-blur-xl rounded-xl text-white text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-indigo-400/50 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
+              >
+                Next Destination
+              </button>
+            ) : (
+              <>
+                <Countdown targetDate="2026/07/13 07:00:00" />
+                <button 
+                  onClick={onReturn}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 bg-red-600/50 backdrop-blur-xl rounded-xl text-white text-sm tracking-widest uppercase transition-all duration-300 font-bold border border-red-400/50 shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                >
+                  <RotateCcw size={18} />
+                  Kembali ke Awal
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
